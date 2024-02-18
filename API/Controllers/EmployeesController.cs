@@ -25,6 +25,7 @@ namespace API.Controllers
             {
                 employee.CreatedBy = "Admin";
                 employee.CreatedOn = DateTime.Now;
+                employee.Dob = employee.Dob.ToLocalTime();
                 await _employeeDbContext.Employees.AddAsync(employee);
                 var result = await _employeeDbContext.SaveChangesAsync() > 0;
                 return result;
