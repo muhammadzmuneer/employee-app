@@ -1,0 +1,22 @@
+<form name="searchForm" [formGroup]="searchForm" class="form-container">
+    <p-toast></p-toast>
+    <div class="flex justify-content-center">
+        <div>
+            <label for="username">Search Employee details by name</label>
+        </div>
+
+        <input pInputText formControlName="employeeName"/>
+        <p-button icon="pi pi-search" 
+            [rounded]="true" 
+            [loading]="loading" 
+            (onClick)="searchEmployee()">
+        </p-button>
+
+        <div class="row emp-details" *ngIf="resultFlag">
+            <app-emp-details 
+                [employeeDetailsFromSearch]="employeeDetails"
+                [departmentMasterList]="this.departmentMasterList">
+            </app-emp-details>
+        </div>
+    </div>
+</form>

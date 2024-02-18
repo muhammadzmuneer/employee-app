@@ -1,0 +1,111 @@
+<form name="registrationForm" [formGroup]="registrationForm">
+    <p-toast></p-toast>
+    <div class="form-row">
+        <div class="form-group">
+            <span class="p-float-label">
+                <input pInputText 
+                    id="firstName" 
+                    formControlName="firstName" 
+                    [ngClass]="{'is-invalid': 
+                    registrationForm.controls['firstName'].touched &&
+                    registrationForm.controls['firstName'].invalid}" />
+                <label for="firstName">First Name</label>
+            </span>
+            <small class="alert-text" 
+                *ngIf="registrationForm.controls['firstName'].touched &&
+                registrationForm.controls['firstName'].invalid">
+                First Name is required
+            </small>
+        </div>
+
+        <div class="form-group">
+            <span class="p-float-label">
+                <input pInputText 
+                    id="lastName" 
+                    formControlName="lastName" 
+                    [ngClass]="{'is-invalid': 
+                    registrationForm.controls['lastName'].touched && 
+                    registrationForm.controls['lastName'].invalid }" />
+                <label for="lastName">Last Name</label>
+            </span>
+            <small class="alert-text" 
+                *ngIf="registrationForm.controls['lastName'].touched &&
+                registrationForm.controls['lastName'].invalid">
+                Last Name is required
+            </small>
+        </div>
+
+        <div class="form-group">
+            <span class="p-float-label">
+                <input pInputText 
+                    id="email" 
+                    formControlName="email" 
+                    [ngClass]="{'is-invalid':
+                    registrationForm.controls['email'].touched &&
+                    registrationForm.controls['email'].invalid}" email />
+                <label for="email">Email</label>
+            </span>
+            <small class="alert-text" 
+                *ngIf="registrationForm.controls['email'].errors && 
+                registrationForm.controls['email'].errors['required'] &&
+                registrationForm.controls['email'].touched">
+                Email is required</small>
+            <small class="alert-text" *ngIf="registrationForm.controls['email'].errors &&
+                registrationForm.controls['email'].errors['email'] &&
+                registrationForm.controls['email'].touched">
+                Enter a valid Email
+            </small>
+        </div>
+
+        <div class="form-group">
+            <span class="p-float-label">
+                <p-calendar id="dob" 
+                    dateFormat="MM d, yy" 
+                    [maxDate]="maxDate" 
+                    formControlName="dob"
+                    [readonlyInput]="true" 
+                    [ngClass]="{'is-invalid': registrationForm.controls['dob'].touched &&
+                    registrationForm.controls['dob'].invalid }">
+                </p-calendar>
+                <label for="dob">DOB</label>
+            </span>
+            <small class="alert-text" 
+                *ngIf="registrationForm.controls['dob'].invalid &&
+                registrationForm.controls['dob'].touched">
+                Date of Birth is required
+            </small>
+        </div>
+
+        <div class="form-group">
+            <span class="p-float-label">
+                <p-dropdown formControlName="department" 
+                    [options]="departmentMasterList" 
+                    placeholder="Department"
+                    optionLabel="departmentName" 
+                    optionValue="departmentId" 
+                    inputId="float-label" 
+                    [ngClass]="{'is-invalid': 
+                    registrationForm.controls['department'].touched &&
+                    registrationForm.controls['department'].invalid }">
+                </p-dropdown>
+                <label for="float-label">Department</label>
+            </span>
+            <small class="alert-text" 
+                *ngIf="registrationForm.controls['department'].touched &&
+                registrationForm.controls['department'].invalid">
+                Department is required
+            </small>
+        </div>
+    </div>
+
+    <div class="register-button">
+        <p-button label="Register" 
+            [disabled]="!registrationForm.valid" 
+            [raised]="true" 
+            [rounded]="true"
+            icon="pi pi-plus" 
+            [loading]="loading" 
+            (onClick)="registerEmployee()">
+        </p-button>
+    </div>
+</form>

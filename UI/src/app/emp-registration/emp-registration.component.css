@@ -1,0 +1,32 @@
+.form-row {
+    display: flex;
+    flex-flow: column;
+    width: 61vw;
+    align-items: center;
+}
+
+.p-float-label {
+    margin: 15px;
+}
+
+.register-button {
+    display: flex;
+    justify-content: center;
+}
+
+.is-invalid {
+    border:1px solid red !important;
+}
+
+.is-valid {
+    border: 1px solid #3445C8 !important;
+}
+
+.alert-text {
+    color: red;
+}
+
+.form-group {
+    display: flex;
+    align-items: baseline;
+}

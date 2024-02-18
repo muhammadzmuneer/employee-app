@@ -1,0 +1,11 @@
+.form-container {
+    width: 61vw;
+    align-items: center !important;
+}
+
+.emp-details {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 52vh;
+    padding-top: 20px !important;
+}

@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="col">
+        <label for="firstName"><b>First Name :</b> {{employeeDetailsFromSearch.firstName}}</label>
+    </div>
+
+    <div class="col">
+        <label for="firstName"><b>Last Name :</b> {{employeeDetailsFromSearch.lastName}}</label>
+    </div>
+
+    <div class="col">
+        <label for="firstName"><b>Email :</b> {{employeeDetailsFromSearch.email}}</label>
+    </div>
+
+    <div class="col">
+        <label for="firstName"><b>DOB :</b> {{employeeDetailsFromSearch.dob | date:"MMM dd, yyyy"}}</label>
+    </div>
+
+    <div class="col">
+        <label for="firstName"><b>Department :</b> {{employeeDetailsFromSearch.departmentId}}</label>
+    </div>
+
+    <div class="col">
+        <label for="firstName"><b>Profile Picture :</b> {{employeeDetailsFromSearch?.profilePicture}}</label>
+    </div>
+</div>

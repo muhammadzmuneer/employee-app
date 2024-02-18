@@ -1,0 +1,28 @@
+<div class="container-fluid d-flex p-0">
+    <div class="d-flex">
+        <img src="../assets/network.jpg" height="735" width="500">
+        <h1 class="title-style">{{title}}</h1>
+    </div>
+
+    <div class="main-tab-container">
+
+        <div class="card">
+            <p-tabView styleClass="tabview-custom">
+                <p-tabPanel header="Employee Registration">
+                    <ng-template pTemplate="header">
+                        <i class="pi pi-user-plus"></i>
+                        <span class="tab-header">Employee Registration</span>
+                    </ng-template>
+                    <app-emp-registration [departmentMasterList]="this.departmentMasterList"></app-emp-registration>
+                </p-tabPanel>
+                <p-tabPanel header="Employee Details">
+                    <ng-template pTemplate="header">
+                        <i class="pi pi-search"></i>
+                        <span class="tab-header">Employee Details</span>
+                    </ng-template>
+                    <app-emp-search [departmentMasterList]="this.departmentMasterList"></app-emp-search>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+    </div>
+</div>

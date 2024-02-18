@@ -1,0 +1,19 @@
+.main {
+    display: flex;
+}
+
+.title-style {
+    color: white; 
+    font-size: 50px;
+    position: absolute;
+    top: 15rem;
+    left: 7rem;
+}
+
+.card {
+    border: none !important;
+}
+
+.tab-header {
+    margin-left: 10px !important;
+}
