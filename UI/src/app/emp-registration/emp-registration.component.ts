@@ -56,5 +56,46 @@ export class EmpRegistrationComponent implements OnInit {
     setTimeout(() => {
         this.loading = false
     }, 2000);
-}
+  }
+
+  checkDuplicateEmployeeRegistration() {
+    this._empService.GetEmployeeDetails(this.registrationForm.controls['firstName'].value.trim()).subscribe({
+      next: (res) => {
+        if (res != null && res != undefined) {
+          if(this.registrationForm.controls['lastName'].value.trim().toLowerCase() == res.lastName.toLowerCase() &&
+            this.registrationForm.controls['email'].value.trim().toLowerCase() == res.email.toLowerCase()) {
+            this._message.add({ severity: 'error', summary: 'Error', detail: 'Employee is already registered. No duplicate registration please.' });
+            this.registrationForm.reset();
+          }
+          else {
+            this.registerEmployee();
+          }
+        }
+        else {
+          this.registerEmployee();
+        }
+      }
+    });
+  }
+
+  onlyAlphabetsAndSpace($event) {
+    var charCode = $event.keyCode;
+
+    if((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 8 || charCode == 32) {
+      return true;
+    }
+    else {
+      return false;
+    }  
+  }
+
+  pasteEvent(event: ClipboardEvent) {
+    let clipboardData = event.clipboardData;
+    let data = clipboardData?.getData('text');
+    var regEx = new RegExp(/^[a-zA-Z ]*$/);
+    if ((data != null && data != undefined) && (!regEx.test(data) || data.length >50)) {
+      event.preventDefault();
+      this._message.add({ severity: 'error', summary: 'Error', detail: 'Invalid Data' })
+    }
+  }
 }

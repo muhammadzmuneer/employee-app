@@ -19,7 +19,11 @@
         <label for="firstName"><b>Department :</b> {{employeeDetailsFromSearch.departmentId}}</label>
     </div>
 
-    <div class="col">
+    <div class="col" *ngIf="employeeDetailsFromSearch?.profilePicture != null">
         <label for="firstName"><b>Profile Picture :</b> {{employeeDetailsFromSearch?.profilePicture}}</label>
+    </div>
+
+    <div class="col" *ngIf="employeeDetailsFromSearch?.profilePicture == null">
+        <label for="firstName"><b>Profile Picture :</b> NA</label>
     </div>
 </div>

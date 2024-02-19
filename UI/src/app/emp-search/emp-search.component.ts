@@ -52,4 +52,25 @@ export class EmpSearchComponent implements OnInit {
     }, 2000);
   }
 
+  onlyAlphabetsAndSpace($event) {
+    var charCode = $event.keyCode;
+
+    if((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 8 || charCode == 32) {
+      return true;
+    }
+    else {
+      return false;
+    }  
+  }
+
+  pasteEvent(event: ClipboardEvent) {
+    let clipboardData = event.clipboardData;
+    let data = clipboardData?.getData('text');
+    var regEx = new RegExp(/^[a-zA-Z ]*$/);
+    if ((data != null && data != undefined) && (!regEx.test(data) || data.length >50)) {
+      event.preventDefault();
+      this._message.add({ severity: 'error', summary: 'Error', detail: 'Invalid Data' })
+    }
+  }
+
 }
