@@ -3,6 +3,7 @@ import { Employee } from '../models/EmployeeModel';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../_services/employee.service';
 import { MessageService } from 'primeng/api';
+import { ApplicationConstants } from '../constants/app-constants';
 
 @Component({
   selector: 'app-emp-search',
@@ -37,14 +38,15 @@ export class EmpSearchComponent implements OnInit {
         if (res != null && res != undefined) {
           this.employeeDetails = res;
           this.resultFlag = true;
-          this._message.add({ severity: 'success', summary: 'Success', detail: 'Employee Details fetched successfully' })
+          this._message.add({ severity: 'success', summary: 'Success', detail: ApplicationConstants.SEARCH_SUCCESS });
         }
         else {
           this.resultFlag = false;
-          this._message.add({ severity: 'error', summary: 'Error', detail: 'No Details found' })
+          this._message.add({ severity: 'error', summary: 'Error', detail: ApplicationConstants.SEARCH_NODATA });
+          this.searchForm.reset();
         }
       },
-      error: () => this._message.add({ severity: 'error', summary: 'Error', detail: 'Error while fetching employee details' }),
+      error: () => this._message.add({ severity: 'error', summary: 'Error', detail: ApplicationConstants.SEARCH_ERROR }),
       complete: () => this.loading = false
     });
     setTimeout(() => {
@@ -69,7 +71,7 @@ export class EmpSearchComponent implements OnInit {
     var regEx = new RegExp(/^[a-zA-Z ]*$/);
     if ((data != null && data != undefined) && (!regEx.test(data) || data.length >50)) {
       event.preventDefault();
-      this._message.add({ severity: 'error', summary: 'Error', detail: 'Invalid Data' })
+      this._message.add({ severity: 'error', summary: 'Error', detail: ApplicationConstants.INVALID_DATA })
     }
   }
 
