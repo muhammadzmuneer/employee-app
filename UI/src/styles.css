@@ -2,3 +2,7 @@
 .p-tabview-nav  {
     justify-content: center !important;
 }
+
+.p-dropdown .p-dropdown-label {
+    width: 12rem !important;
+}
