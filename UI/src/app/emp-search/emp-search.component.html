@@ -5,10 +5,13 @@
             <label for="username">Search Employee details by name</label>
         </div>
 
-        <input pInputText formControlName="employeeName"/>
+        <input pInputText formControlName="employeeName" 
+            (keypress)="onlyAlphabetsAndSpace($event)"
+            (paste)="pasteEvent($event)"/>
         <p-button icon="pi pi-search" 
             [rounded]="true" 
             [loading]="loading" 
+            [disabled]="!searchForm.valid"
             (onClick)="searchEmployee()">
         </p-button>
 

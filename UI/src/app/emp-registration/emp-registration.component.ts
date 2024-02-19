@@ -3,6 +3,7 @@ import { Employee } from '../models/EmployeeModel';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../_services/employee.service';
 import { MessageService } from 'primeng/api';
+import { ApplicationConstants } from '../constants/app-constants';
 
 @Component({
   selector: 'app-emp-registration',
@@ -44,17 +45,59 @@ export class EmpRegistrationComponent implements OnInit {
     this._empService.RegisterEmployee(this.employeeForm).subscribe({
       next: (res)=>{
         if(res) {
-          this._message.add({ severity: 'success', summary: 'Success', detail: 'Employee Registered Successfully'})
+          this._message.add({ severity: 'success', summary: 'Success', detail: ApplicationConstants.REGISTER_SUCCESS});
+          this.registrationForm.reset();
         }
         else {
-          this._message.add({ severity: 'error', summary: 'Error', detail: 'Error while registering the employee'})
+          this._message.add({ severity: 'error', summary: 'Error', detail: ApplicationConstants.REGISTER_ERROR});
         }
       } ,
-      error: () => this._message.add({ severity: 'error', summary: 'Error', detail: 'Error while registering the employee'}),
+      error: () => this._message.add({ severity: 'error', summary: 'Error', detail: ApplicationConstants.REGISTER_ERROR}),
     });
 
     setTimeout(() => {
         this.loading = false
     }, 2000);
-}
+  }
+
+  checkDuplicateEmployeeRegistration() {
+    this._empService.GetEmployeeDetails(this.registrationForm.controls['firstName'].value.trim()).subscribe({
+      next: (res) => {
+        if (res != null && res != undefined) {
+          if(this.registrationForm.controls['lastName'].value.trim().toLowerCase() == res.lastName.toLowerCase() &&
+            this.registrationForm.controls['email'].value.trim().toLowerCase() == res.email.toLowerCase()) {
+            this._message.add({ severity: 'error', summary: 'Error', detail: ApplicationConstants.REGISTER_DUPLICATE });
+            this.registrationForm.reset();
+          }
+          else {
+            this.registerEmployee();
+          }
+        }
+        else {
+          this.registerEmployee();
+        }
+      }
+    });
+  }
+
+  onlyAlphabetsAndSpace($event) {
+    var charCode = $event.keyCode;
+
+    if((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 8 || charCode == 32) {
+      return true;
+    }
+    else {
+      return false;
+    }  
+  }
+
+  pasteEvent(event: ClipboardEvent) {
+    let clipboardData = event.clipboardData;
+    let data = clipboardData?.getData('text');
+    var regEx = new RegExp(/^[a-zA-Z ]*$/);
+    if ((data != null && data != undefined) && (!regEx.test(data) || data.length >50)) {
+      event.preventDefault();
+      this._message.add({ severity: 'error', summary: 'Error', detail: ApplicationConstants.INVALID_DATA })
+    }
+  }
 }

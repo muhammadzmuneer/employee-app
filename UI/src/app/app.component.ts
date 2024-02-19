@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Department } from './models/DepartmentModel';
 import { EmployeeService } from './_services/employee.service';
+import { EmpSearchComponent } from './emp-search/emp-search.component';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { EmployeeService } from './_services/employee.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  @ViewChild(EmpSearchComponent) empSearch : EmpSearchComponent | undefined;
   departmentMasterList: Department[] = [];
   title = 'EMPLOYEE APP';
 
@@ -19,4 +21,12 @@ export class AppComponent implements OnInit {
     });
   }
 
+  resetTheForms($event) {
+    if($event.index == 1) {
+      this.empSearch?.searchForm.reset();
+      if(this.empSearch?.resultFlag != undefined) {
+        this.empSearch.resultFlag = false;
+      }
+    }
+  }
 }

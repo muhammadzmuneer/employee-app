@@ -6,6 +6,9 @@
                 <input pInputText 
                     id="firstName" 
                     formControlName="firstName" 
+                    maxlength="50"
+                    (keypress)="onlyAlphabetsAndSpace($event)"
+                    (paste)="pasteEvent($event)"
                     [ngClass]="{'is-invalid': 
                     registrationForm.controls['firstName'].touched &&
                     registrationForm.controls['firstName'].invalid}" />
@@ -23,6 +26,9 @@
                 <input pInputText 
                     id="lastName" 
                     formControlName="lastName" 
+                    maxlength="50"
+                    (keypress)="onlyAlphabetsAndSpace($event)"
+                    (paste)="pasteEvent($event)"
                     [ngClass]="{'is-invalid': 
                     registrationForm.controls['lastName'].touched && 
                     registrationForm.controls['lastName'].invalid }" />
@@ -39,7 +45,8 @@
             <span class="p-float-label">
                 <input pInputText 
                     id="email" 
-                    formControlName="email" 
+                    formControlName="email"
+                    maxlength="100"
                     [ngClass]="{'is-invalid':
                     registrationForm.controls['email'].touched &&
                     registrationForm.controls['email'].invalid}" email />
@@ -105,7 +112,7 @@
             [rounded]="true"
             icon="pi pi-plus" 
             [loading]="loading" 
-            (onClick)="registerEmployee()">
+            (onClick)="checkDuplicateEmployeeRegistration()">
         </p-button>
     </div>
 </form>
