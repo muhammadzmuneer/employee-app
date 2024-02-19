@@ -30,3 +30,7 @@
     display: flex;
     align-items: baseline;
 }
+
+:host ::ng-deep .p-dropdown-items-wrapper > ul{
+    padding: 0;
+}
