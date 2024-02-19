@@ -279,3 +279,6 @@ _Pvt_Extensions
 # Common node modules locations
 /node_modules
 /wwwroot/node_modules
+
+# Development JSON
+appsettings.Development.json
