@@ -17,6 +17,8 @@ export class EmpRegistrationComponent implements OnInit {
   loading: boolean = false;
   employeeForm: Employee = new Employee;
   maxDate = new Date();
+  isCalenderInvalid = false;
+  isDropdownInvalid = false;
 
   registrationForm : FormGroup = this._fb.group({
     firstName: ['',Validators.required],
@@ -78,6 +80,14 @@ export class EmpRegistrationComponent implements OnInit {
         }
       }
     });
+  }
+
+  validateDateField() {
+    this.isCalenderInvalid = this.registrationForm.controls['dob'].invalid;
+  }
+
+  validateDropdown() {
+    this.isDropdownInvalid = this.registrationForm.controls['department'].invalid;
   }
 
   onlyAlphabetsAndSpace($event) {
