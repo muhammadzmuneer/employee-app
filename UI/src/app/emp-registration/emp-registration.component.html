@@ -71,14 +71,14 @@
                     [maxDate]="maxDate" 
                     formControlName="dob"
                     [readonlyInput]="true" 
-                    [ngClass]="{'is-invalid': registrationForm.controls['dob'].touched &&
-                    registrationForm.controls['dob'].invalid }">
+                    (onClickOutside)="validateDateField()"
+                    (onSelect)="validateDateField()"
+                    [ngClass]="{'is-invalid': isCalenderInvalid }">
                 </p-calendar>
                 <label for="dob">DOB</label>
             </span>
             <small class="alert-text" 
-                *ngIf="registrationForm.controls['dob'].invalid &&
-                registrationForm.controls['dob'].touched">
+                *ngIf="isCalenderInvalid">
                 Date of Birth is required
             </small>
         </div>
@@ -91,15 +91,13 @@
                     optionLabel="departmentName" 
                     optionValue="departmentId" 
                     inputId="float-label" 
-                    [ngClass]="{'is-invalid': 
-                    registrationForm.controls['department'].touched &&
-                    registrationForm.controls['department'].invalid }">
+                    (onHide)="validateDropdown()"
+                    [ngClass]="{'is-invalid': isDropdownInvalid }">
                 </p-dropdown>
                 <label for="float-label">Department</label>
             </span>
             <small class="alert-text" 
-                *ngIf="registrationForm.controls['department'].touched &&
-                registrationForm.controls['department'].invalid">
+                *ngIf="isDropdownInvalid">
                 Department is required
             </small>
         </div>
