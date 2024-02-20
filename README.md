@@ -24,7 +24,8 @@ Designed to store employee information.
 
 
 # Flowchart
-![EmployeeAppFlowChart](https://github.com/muhammadzmuneer/employee-app/assets/82236699/01b03144-d711-49f5-8cf1-c7d574f14b61)
+![EmployeeAppFlowChart](https://github.com/muhammadzmuneer/employee-app/assets/82236699/0a3a292b-9411-4c58-869b-5292746f37dc)
+
 
 
 
