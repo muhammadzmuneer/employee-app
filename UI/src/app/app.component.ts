@@ -3,6 +3,7 @@ import { Department } from './models/DepartmentModel';
 import { EmployeeService } from './_services/employee.service';
 import { EmpSearchComponent } from './emp-search/emp-search.component';
 import { Router } from '@angular/router';
+import { ApplicationConstants } from './constants/app-constants';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   @ViewChild(EmpSearchComponent) empSearch : EmpSearchComponent | undefined;
   departmentMasterList: Department[] = [];
-  title = 'EMPLOYEE APP';
+  title = ApplicationConstants.TITLE;
 
   constructor(private _empService: EmployeeService, private _router: Router) { }
 

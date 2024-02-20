@@ -6,5 +6,5 @@ export class ApplicationConstants {
     public static readonly SEARCH_SUCCESS = 'Employee Details fetched successfully';
     public static readonly SEARCH_NODATA = 'No Details found';
     public static readonly SEARCH_ERROR = 'Error while fetching employee details';
-    
+    public static readonly TITLE = 'EMPLOYEE APP';
 }
