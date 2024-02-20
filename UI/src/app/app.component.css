@@ -17,3 +17,8 @@
 .tab-header {
     margin-left: 10px !important;
 }
+
+.landingPageImage {
+    height: 100vh;
+    width: 500px;
+}

@@ -6,3 +6,7 @@
 .p-dropdown .p-dropdown-label {
     width: 12rem !important;
 }
+
+.p-dropdown-items-wrapper > ul{
+    padding: 0;
+}
