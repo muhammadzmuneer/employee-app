@@ -1,4 +1,6 @@
 using API.DAL;
+using API.DAL.Contract;
+using API.DAL.Implementation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,8 @@ builder.Services.AddDbContext<EmployeesDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<IEmployeesRepository, EmployeesRepository>();
 
 builder.Services.AddCors();
 
